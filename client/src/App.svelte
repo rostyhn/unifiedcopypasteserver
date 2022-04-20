@@ -1,3 +1,6 @@
+<svelte:head>
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+</svelte:head>
 <script>
   import Clipboard from './Clipboard.svelte';
   
