@@ -1,7 +1,5 @@
 <script>
-  export let name;
-
-  let authenticated = false;
+  export let name; 
   let contents = "";
 
   const socket = new WebSocket(`ws://${window.location.host}/clipboard_websocket/${name}`);

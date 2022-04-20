@@ -9,13 +9,28 @@
   socket.addEventListener('message', function(event) {
     names = JSON.parse(event.data);
   });
+
+  
+  function addClipboard() {
+    const count = names.length + 1;
+    let name = prompt("Please name the clipboard.", `Custom Clipboard ${count}`);    
+    fetch(`/api/create_clipboard/${name}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({'contents': 'Initial Contents', 'passphrase': ''})
+    });    
+  }
+  
 </script>
 
 <main>
   <h1>Unified Copy Paste</h1>
   {#each names as name}
     <Clipboard name={name}/>
-    {/each} 
+  {/each}
+  <button on:click={addClipboard}>Add clipboard</button>
 </main>
 
 <style>
