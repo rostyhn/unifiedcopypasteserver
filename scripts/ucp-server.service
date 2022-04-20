@@ -1,0 +1,11 @@
+[Unit]
+Description=Unified Copy Paste Server
+
+[Service]
+Type=simple
+User=root
+ExecStart=/opt/unifiedcopypasteserver/env/bin/uvicorn api.main:app --host 0.0.0.0
+WorkingDirectory=/opt/unifiedcopypasteserver
+
+[Install]
+WantedBy=multi-user.target
