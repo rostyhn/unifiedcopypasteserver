@@ -1,0 +1,3 @@
+[submodule "UnifiedCopyPasteDaemon"]
+	path = UnifiedCopyPaste
+	url = https://github.com/rostyhn/UnifiedCopyPaste
