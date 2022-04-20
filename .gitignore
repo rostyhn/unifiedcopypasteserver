@@ -8,7 +8,6 @@ venv/
 .venv/
 env*
 dist/
-build/
 *.egg
 *.egg-info/
 _mailinglist
@@ -83,7 +82,6 @@ scripts/flow/*/.flowconfig
 .grunt
 _SpecRunner.html
 __benchmarks__
-build/
 remote-repo/
 coverage/
 .module-cache
