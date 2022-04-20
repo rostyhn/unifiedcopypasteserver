@@ -22,11 +22,11 @@
       body: JSON.stringify({'contents': 'Initial Contents', 'passphrase': ''})
     });    
   }
-  
 </script>
 
 <main>
   <h1>Unified Copy Paste</h1>
+  <p>Click / touch the name of any clipboard to automatically copy it.</p>
   {#each names as name}
     <Clipboard name={name}/>
   {/each}
@@ -34,6 +34,9 @@
 </main>
 
 <style>
+  h1 {
+    color: #B00020;
+  }
   main {
     text-align: center;
   }
