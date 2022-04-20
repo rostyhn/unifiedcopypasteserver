@@ -111,16 +111,22 @@ async def create_clipboard(hostname: str, new_clip: ClipboardRequest):
 async def clipboards_websocket(websocket: WebSocket):
     await clipboards_manager.connect(websocket)
     hostnames = await cache.get("hostnames")
-    await websocket.send_json(hostnames)
-    await websocket.receive()
-
-
+    try:
+        await websocket.send_json(hostnames)
+        await websocket.receive()
+    except WebSocketDisconnect:
+        await clipboards_manager.disconnect(websocket)
+        
 @router.websocket("/clipboard_websocket/{hostname}")
 async def clipboard_websocket(hostname: str, websocket: WebSocket, passphrase: str = ""):
     await clipboard_managers[hostname].connect(websocket)
     clip = await cache.get(hostname)
     if clip.isPassphraseCorrect(passphrase):
-        while True:
-            await websocket.send_json(clip.get_contents(passphrase))
-            data = await websocket.receive_text()
-            await set_clipboard(hostname, ClipboardRequest(contents=data, passphrase=passphrase))
+        try:
+            while True:
+                await websocket.send_json(clip.get_contents(passphrase))
+                data = await websocket.receive_text()
+                await set_clipboard(hostname, ClipboardRequest(contents=data, passphrase=passphrase))
+        except WebSocketDisconnect:
+            await clipboard_managers[hostname].disconnect(websocket)
+            
