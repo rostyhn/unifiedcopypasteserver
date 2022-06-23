@@ -4,7 +4,7 @@
 <script>
   import Clipboard from './Clipboard.svelte';
   
-  const socket = new WebSocket(`ws://${window.location.host}/clipboards_websocket`);
+  const socket = new WebSocket(`ws://${window.location.host}/api/clipboards_websocket`);
   let names = [];
   socket.addEventListener('message', function(event) {
     names = JSON.parse(event.data);

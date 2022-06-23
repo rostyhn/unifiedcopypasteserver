@@ -2,7 +2,7 @@
   export let name;   
   let contents = "";
 
-  const socket = new WebSocket(`ws://${window.location.host}/clipboard_websocket/${name}`);
+  const socket = new WebSocket(`ws://${window.location.host}/api/clipboard_websocket/${name}`);
 
   socket.addEventListener('message', function(event) {
     contents = JSON.parse(event.data);

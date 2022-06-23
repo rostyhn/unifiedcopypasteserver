@@ -1,7 +1,6 @@
 from fastapi import WebSocket
 from typing import List,Any
 
-
 class ConnectionManager:
     def __init__(self):
         self.active_connections: List[WebSocket] = []
@@ -19,4 +18,3 @@ class ConnectionManager:
     async def broadcast(self, message: Any):
         for connection in self.active_connections:
             await connection.send_json(message)
-
